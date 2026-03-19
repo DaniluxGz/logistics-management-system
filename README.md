@@ -65,3 +65,10 @@ El backend sigue arquitectura hexagonal (Ports & Adapters) con las siguientes ca
 ## Credenciales de prueba
 
 Regístrate en `/auth/registro` con cualquier email y contraseña de mínimo 6 caracteres.
+
+## Documentación
+
+Los entregables de documentación están en la carpeta `/docs`:
+
+- `docs/er-diagram/er-diagram.png` — Diagrama Entidad-Relación
+- `docs/er-diagram/database-script.sql` — Script SQL de la base de datos
