@@ -35,7 +35,7 @@ public class Cliente {
     @Column(name = "phone")
     private String phone;
 
-    // One customer can have many shipments
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Envio> envios = new ArrayList<>();

@@ -11,4 +11,7 @@ public interface EnvioMaritimoRepositorio extends JpaRepository<EnvioMaritimo, L
 
     // Buscar envíos marítimos por número de flota
     List<EnvioMaritimo> findByNumeroFlota(String numeroFlota);
+
+    // Verificar si existe un envío con ese número de guía
+    boolean existsByNumeroGuia(String numeroGuia);
 }

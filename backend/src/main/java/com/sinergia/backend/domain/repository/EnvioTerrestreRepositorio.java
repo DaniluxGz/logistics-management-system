@@ -11,4 +11,7 @@ public interface EnvioTerrestreRepositorio extends JpaRepository<EnvioTerrestre,
 
     // Buscar envíos terrestres por placa de vehículo
     List<EnvioTerrestre> findByPlacaVehiculo(String placaVehiculo);
+
+    // Verificar si existe un envío con ese número de guía
+    boolean existsByNumeroGuia(String numeroGuia);
 }
