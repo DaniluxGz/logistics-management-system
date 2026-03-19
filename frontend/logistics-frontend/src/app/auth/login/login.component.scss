@@ -3,105 +3,128 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f0f2f5;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
 }
 
 .login-card {
     background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
-    h2 {
-        margin: 0 0 0.25rem;
-        color: #1a1a2e;
-        font-size: 1.8rem;
-    }
+    .logo-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.75rem;
 
-    .subtitulo {
-        color: #666;
-        margin: 0 0 1.5rem;
-        font-size: 0.9rem;
+        .logo-icon {
+            font-size: 2rem;
+            background: var(--accent-light);
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .logo-texto {
+            h2 {
+                margin: 0;
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                letter-spacing: -0.025em;
+            }
+
+            p {
+                margin: 0;
+                color: var(--text-muted);
+                font-size: 0.8rem;
+            }
+        }
     }
 }
 
 .campo {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
 
     label {
-        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
         margin-bottom: 0.4rem;
-        font-weight: 500;
-        color: #333;
-        font-size: 0.9rem;
+        letter-spacing: 0.02em;
     }
 
     input {
-        width: 100%;
-        padding: 0.7rem 1rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 1rem;
-        box-sizing: border-box;
-        transition: border-color 0.2s;
+        padding: 0.65rem 0.875rem;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.875rem;
+        transition: all 0.15s ease;
 
         &:focus {
             outline: none;
-            border-color: #4f46e5;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
     }
 }
 
 .error-campo {
-    color: #e53e3e;
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
+    color: var(--danger);
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
     display: block;
 }
 
 .error-general {
-    background: #fff5f5;
-    color: #e53e3e;
+    background: var(--danger-light);
+    color: var(--danger);
     padding: 0.7rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     margin-bottom: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    border-left: 3px solid var(--danger);
 }
 
-button {
+button[type="submit"] {
     width: 100%;
-    padding: 0.8rem;
-    background: #4f46e5;
+    padding: 0.75rem;
+    background: var(--accent);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
     cursor: pointer;
     font-weight: 600;
-    transition: background 0.2s;
+    transition: all 0.15s ease;
+    margin-top: 0.5rem;
 
     &:hover:not(:disabled) {
-        background: #4338ca;
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
     }
 
     &:disabled {
-        background: #a5b4fc;
+        background: #c7d2fe;
         cursor: not-allowed;
     }
 }
 
 .registro-link {
     text-align: center;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #666;
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
 
     a {
-        color: #4f46e5;
-        text-decoration: none;
-        font-weight: 500;
+        color: var(--accent);
+        font-weight: 600;
 
         &:hover {
             text-decoration: underline;

@@ -1,13 +1,17 @@
 <div class="login-container">
     <div class="login-card">
-        <h2>Iniciar Sesión</h2>
-        <p class="subtitulo">Sistema de Gestión Logística</p>
+        <div class="logo-header">
+            <div class="logo-icon">🚚</div>
+            <div class="logo-texto">
+                <h2>Logística Sinergia</h2>
+                <p>Sistema de gestión de envíos</p>
+            </div>
+        </div>
 
         <form [formGroup]="formulario" (ngSubmit)="iniciarSesion()">
-
             <div class="campo">
                 <label>Correo electrónico</label>
-                <input type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+                <input type="email" formControlName="email" placeholder="correo@empresa.com" />
                 <span class="error-campo"
                     *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
                     El correo es obligatorio
@@ -20,7 +24,7 @@
 
             <div class="campo">
                 <label>Contraseña</label>
-                <input type="password" formControlName="password" placeholder="••••••" />
+                <input type="password" formControlName="password" placeholder="••••••••" />
                 <span class="error-campo"
                     *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
                     La contraseña es obligatoria
@@ -30,13 +34,12 @@
             <div class="error-general" *ngIf="error">{{ error }}</div>
 
             <button type="submit" [disabled]="formulario.invalid || cargando">
-                {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+                {{ cargando ? 'Ingresando...' : 'Ingresar al sistema' }}
             </button>
 
             <p class="registro-link">
-                ¿No tienes cuenta? <a routerLink="/auth/registro">Regístrate</a>
+                ¿No tienes cuenta? <a routerLink="/auth/registro">Crear cuenta</a>
             </p>
-
         </form>
     </div>
 </div>

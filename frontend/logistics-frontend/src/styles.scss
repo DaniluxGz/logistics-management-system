@@ -1,3 +1,30 @@
+// ===========================
+// Variables de color
+// ===========================
+:root {
+    --primary: #0f172a;
+    --primary-light: #1e293b;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-light: #eef2ff;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --bg-card: #ffffff;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+    --radius: 10px;
+    --radius-sm: 6px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,9 +32,11 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f2f5;
-    color: #334155;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 a {
@@ -17,30 +46,40 @@ a {
 
 input,
 select,
-button {
+button,
+textarea {
     font-family: inherit;
+    font-size: 14px;
 }
 
-// Clases utilitarias globales
+// ===========================
+// Layout
+// ===========================
 .contenedor {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
 }
 
 .encabezado {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
 
     h1 {
-        color: #1a1a2e;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.025em;
     }
 
     p {
-        color: #666;
-        font-size: 0.9rem;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
     }
 }
 
@@ -54,83 +93,142 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 
     h2 {
-        color: #1a1a2e;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
     }
+}
+
+// ===========================
+// Tabla
+// ===========================
+.tabla-contenedor {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
-    border-radius: 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow);
 
     th {
         background: #f8fafc;
         padding: 0.75rem 1rem;
         text-align: left;
-        font-size: 0.85rem;
-        color: #64748b;
+        font-size: 0.75rem;
+        color: var(--text-muted);
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid var(--border);
     }
 
     td {
-        padding: 0.75rem 1rem;
-        border-top: 1px solid #f1f5f9;
-        font-size: 0.9rem;
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        vertical-align: middle;
     }
 
-    tr:hover td {
-        background: #f8fafc;
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody tr:hover td {
+        background: #fafbff;
     }
 }
 
+// ===========================
+// Botones
+// ===========================
 .btn-primario {
-    background: #4f46e5;
+    background: var(--accent);
     color: white;
     border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
 
     &:hover:not(:disabled) {
-        background: #4338ca;
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    &:active {
+        transform: translateY(0);
     }
 
     &:disabled {
-        background: #a5b4fc;
+        background: #c7d2fe;
         cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
     }
 }
 
 .btn-secundario {
     background: white;
-    color: #4f46e5;
-    border: 1px solid #4f46e5;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
 
     &:hover {
-        background: #f5f3ff;
+        background: var(--accent-light);
+        transform: translateY(-1px);
+    }
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+
+    &:hover {
+        background: var(--bg);
+        color: var(--text-primary);
     }
 }
 
 .btn-cerrar {
-    background: #fee2e2;
-    color: #dc2626;
+    background: var(--danger-light);
+    color: var(--danger);
     border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
 
     &:hover {
         background: #fecaca;
@@ -138,111 +236,186 @@ table {
 }
 
 .btn-eliminar {
-    background: #fee2e2;
-    color: #dc2626;
-    border: none;
-    padding: 0.3rem 0.8rem;
-    border-radius: 6px;
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid #fca5a5;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
 
     &:hover {
-        background: #fecaca;
+        background: var(--danger-light);
+        border-color: var(--danger);
     }
 }
 
-.sin-datos {
-    text-align: center;
-    color: #94a3b8;
-    padding: 2rem;
-    background: white;
-    border-radius: 8px;
-}
-
-.cargando {
-    text-align: center;
-    color: #64748b;
-    padding: 2rem;
-}
-
-.estado {
-    background: #e0f2fe;
-    color: #0369a1;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
+// ===========================
+// Formularios
+// ===========================
 .formulario-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
     margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
 
     h3 {
-        margin: 0 0 1.25rem;
-        color: #1a1a2e;
+        margin: 0 0 1.5rem;
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-weight: 600;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
     }
 }
 
 .fila {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.25rem;
+    margin-bottom: 0;
 }
 
 .campo {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 
     label {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #475569;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
         margin-bottom: 0.4rem;
+        letter-spacing: 0.02em;
     }
 
     input,
     select {
-        padding: 0.6rem 0.9rem;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        font-size: 0.95rem;
+        padding: 0.6rem 0.875rem;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        background: white;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
         &:focus {
             outline: none;
-            border-color: #4f46e5;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        &::placeholder {
+            color: var(--text-muted);
         }
     }
-}
 
-.error {
-    color: #dc2626;
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
-}
-
-.descuento {
-    color: #16a34a;
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
-    font-weight: 500;
-}
-
-.error-general {
-    background: #fff5f5;
-    color: #dc2626;
-    padding: 0.7rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+    select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        padding-right: 2.5rem;
+    }
 }
 
 .botones {
     display: flex;
     justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+// ===========================
+// Estados y badges
+// ===========================
+.estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    &.pendiente {
+        background: var(--warning-light);
+        color: var(--warning);
+    }
+
+    &.en_transito {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    &.entregado {
+        background: var(--success-light);
+        color: var(--success);
+    }
+
+    &.cancelado {
+        background: var(--danger-light);
+        color: var(--danger);
+    }
+}
+
+.badge-descuento {
+    background: var(--success-light);
+    color: var(--success);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+// ===========================
+// Mensajes
+// ===========================
+.sin-datos {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem 2rem;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px dashed var(--border);
+    font-size: 0.9rem;
+}
+
+.cargando {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem;
+    font-size: 0.9rem;
+}
+
+.error {
+    color: var(--danger);
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.descuento {
+    color: var(--success);
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
+    font-weight: 600;
+}
+
+.error-general {
+    background: var(--danger-light);
+    color: var(--danger);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    border-left: 3px solid var(--danger);
 }

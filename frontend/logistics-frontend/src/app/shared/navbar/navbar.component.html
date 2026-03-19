@@ -2,17 +2,21 @@
     <div class="navbar-brand">
         <span class="logo">🚚</span>
         <span class="titulo">Logística Sinergia</span>
+        <span class="version">v1.0</span>
     </div>
 
     <div class="navbar-links">
-        <a routerLink="/envios" routerLinkActive="activo">Envíos</a>
-        <a routerLink="/clientes" routerLinkActive="activo">Clientes</a>
-        <a routerLink="/bodegas" routerLinkActive="activo">Bodegas</a>
-        <a routerLink="/puertos" routerLinkActive="activo">Puertos</a>
+        <a routerLink="/envios" routerLinkActive="activo">📦 Envíos</a>
+        <a routerLink="/clientes" routerLinkActive="activo">👥 Clientes</a>
+        <a routerLink="/bodegas" routerLinkActive="activo">🏭 Bodegas</a>
+        <a routerLink="/puertos" routerLinkActive="activo">⚓ Puertos</a>
     </div>
 
     <div class="navbar-usuario">
-        <span>{{ usuario?.nombre }}</span>
-        <button (click)="cerrarSesion()">Cerrar Sesión</button>
+        <div class="info-usuario">
+            <span class="nombre">{{ usuario?.nombre }}</span>
+            <span class="rol">{{ usuario?.rol }}</span>
+        </div>
+        <button (click)="cerrarSesion()">Salir</button>
     </div>
 </nav>
