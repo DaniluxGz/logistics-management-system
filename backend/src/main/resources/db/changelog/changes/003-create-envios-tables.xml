@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="003-envios" author="sinergia">
+        <createTable tableName="envios">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="numero_guia" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="tipo_producto" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cantidad" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha_registro" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha_entrega" type="DATE"/>
+            <column name="precio_original" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="precio_final" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cliente_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_envio_cliente"
+                             references="customers(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="003-land-shipments" author="sinergia">
+        <createTable tableName="land_shipments">
+            <column name="shipment_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"
+                             foreignKeyName="fk_land_envio" references="envios(id)"/>
+            </column>
+            <column name="placa_vehiculo" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bodega_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_land_bodega"
+                             references="bodegas(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="003-sea-shipments" author="sinergia">
+        <createTable tableName="sea_shipments">
+            <column name="shipment_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"
+                             foreignKeyName="fk_sea_envio" references="envios(id)"/>
+            </column>
+            <column name="numero_flota" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="puerto_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_sea_puerto"
+                             references="puertos(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

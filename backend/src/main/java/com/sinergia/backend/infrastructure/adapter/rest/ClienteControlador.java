@@ -1,4 +1,4 @@
-package com.sinergia.backend.infrastructure.adapter.rest.entity;
+package com.sinergia.backend.infrastructure.adapter.rest;
 
 import com.sinergia.backend.application.usecase.ClienteServicio;
 import com.sinergia.backend.domain.model.entity.Cliente;

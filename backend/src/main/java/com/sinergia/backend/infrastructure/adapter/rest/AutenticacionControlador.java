@@ -1,4 +1,4 @@
-package com.sinergia.backend.infrastructure.adapter.rest.entity;
+package com.sinergia.backend.infrastructure.adapter.rest;
 
 import com.sinergia.backend.domain.model.entity.Usuario;
 import com.sinergia.backend.domain.model.enums.RolUsuario;
