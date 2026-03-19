@@ -36,7 +36,7 @@ public class Cliente {
     private String phone;
 
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Envio> envios = new ArrayList<>();
 }
