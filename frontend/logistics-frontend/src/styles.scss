@@ -1,28 +1,19 @@
-// ===========================
-// Variables de color
-// ===========================
 :root {
-    --primary: #0f172a;
-    --primary-light: #1e293b;
-    --accent: #6366f1;
-    --accent-hover: #4f46e5;
-    --accent-light: #eef2ff;
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --primary-light: #eef2ff;
+    --text: #1e1b4b;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border: #e5e7eb;
+    --bg: #f5f3ff;
+    --card: #ffffff;
     --success: #059669;
     --success-light: #d1fae5;
     --danger: #dc2626;
     --danger-light: #fee2e2;
     --warning: #d97706;
     --warning-light: #fef3c7;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    --border: #e2e8f0;
-    --bg: #f8fafc;
-    --bg-card: #ffffff;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
-    --radius: 10px;
-    --radius-sm: 6px;
 }
 
 * {
@@ -32,9 +23,9 @@
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     background: var(--bg);
-    color: var(--text-primary);
+    color: var(--text);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -52,9 +43,6 @@ textarea {
     font-size: 14px;
 }
 
-// ===========================
-// Layout
-// ===========================
 .contenedor {
     max-width: 1280px;
     margin: 0 auto;
@@ -64,22 +52,20 @@ textarea {
 .encabezado {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        color: var(--text-primary);
-        letter-spacing: -0.025em;
+        color: var(--text);
     }
 
     p {
         color: var(--text-muted);
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -96,49 +82,38 @@ textarea {
     margin-bottom: 1.25rem;
 
     h2 {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
-        color: var(--text-primary);
+        color: var(--text);
     }
-}
-
-// ===========================
-// Tabla
-// ===========================
-.tabla-contenedor {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: var(--shadow);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--bg-card);
-    border-radius: var(--radius);
+    background: var(--card);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: 0 1px 4px rgba(79, 70, 229, 0.08);
+    border: 1px solid var(--border);
 
     th {
-        background: #f8fafc;
+        background: var(--primary-light);
         padding: 0.75rem 1rem;
         text-align: left;
         font-size: 0.75rem;
-        color: var(--text-muted);
-        font-weight: 600;
+        color: var(--primary);
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid #c7d2fe;
     }
 
     td {
         padding: 0.875rem 1rem;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid #f3f4f6;
         font-size: 0.875rem;
         color: var(--text-secondary);
-        vertical-align: middle;
     }
 
     tbody tr:last-child td {
@@ -146,60 +121,46 @@ table {
     }
 
     tbody tr:hover td {
-        background: #fafbff;
+        background: #fafafe;
     }
 }
 
-// ===========================
-// Botones
-// ===========================
 .btn-primario {
-    background: var(--accent);
+    background: var(--primary);
     color: white;
     border: none;
-    padding: 0.5rem 1.1rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.875rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: all 0.15s ease;
-    letter-spacing: 0.01em;
+    font-size: 0.85rem;
+    transition: all 0.15s;
 
     &:hover:not(:disabled) {
-        background: var(--accent-hover);
+        background: var(--primary-dark);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
-    }
-
-    &:active {
-        transform: translateY(0);
     }
 
     &:disabled {
         background: #c7d2fe;
         cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
     }
 }
 
 .btn-secundario {
     background: white;
-    color: var(--accent);
-    border: 1.5px solid var(--accent);
-    padding: 0.5rem 1.1rem;
-    border-radius: var(--radius-sm);
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.875rem;
-    transition: all 0.15s ease;
+    font-size: 0.85rem;
+    transition: all 0.15s;
 
     &:hover {
-        background: var(--accent-light);
-        transform: translateY(-1px);
+        background: var(--primary-light);
     }
 }
 
@@ -207,15 +168,14 @@ table {
     background: transparent;
     color: var(--text-secondary);
     border: 1px solid var(--border);
-    padding: 0.5rem 1.1rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.875rem;
-    transition: all 0.15s ease;
+    font-size: 0.85rem;
+    transition: all 0.15s;
 
     &:hover {
-        background: var(--bg);
-        color: var(--text-primary);
+        background: #f9fafb;
     }
 }
 
@@ -223,12 +183,12 @@ table {
     background: var(--danger-light);
     color: var(--danger);
     border: none;
-    padding: 0.5rem 1.1rem;
-    border-radius: var(--radius-sm);
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.875rem;
-    transition: all 0.15s ease;
+    font-size: 0.85rem;
+    transition: all 0.15s;
 
     &:hover {
         background: #fecaca;
@@ -240,32 +200,28 @@ table {
     color: var(--danger);
     border: 1px solid #fca5a5;
     padding: 0.3rem 0.75rem;
-    border-radius: var(--radius-sm);
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 500;
-    transition: all 0.15s ease;
+    transition: all 0.15s;
 
     &:hover {
         background: var(--danger-light);
-        border-color: var(--danger);
     }
 }
 
-// ===========================
-// Formularios
-// ===========================
 .formulario-card {
-    background: var(--bg-card);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 12px;
     padding: 1.75rem;
     margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
+    box-shadow: 0 1px 4px rgba(79, 70, 229, 0.06);
 
     h3 {
         margin: 0 0 1.5rem;
-        color: var(--text-primary);
+        color: var(--text);
         font-size: 1rem;
         font-weight: 600;
         padding-bottom: 1rem;
@@ -277,7 +233,6 @@ table {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
-    margin-bottom: 0;
 }
 
 .campo {
@@ -297,16 +252,16 @@ table {
     select {
         padding: 0.6rem 0.875rem;
         border: 1.5px solid var(--border);
-        border-radius: var(--radius-sm);
+        border-radius: 8px;
         font-size: 0.875rem;
-        color: var(--text-primary);
+        color: var(--text);
         background: white;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        transition: all 0.15s;
 
         &:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
 
         &::placeholder {
@@ -317,7 +272,7 @@ table {
     select {
         cursor: pointer;
         appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 0.75rem center;
         padding-right: 2.5rem;
@@ -331,59 +286,23 @@ table {
     margin-top: 0.5rem;
 }
 
-// ===========================
-// Estados y badges
-// ===========================
 .estado {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
+    display: inline-block;
     padding: 0.25rem 0.65rem;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-
-    &.pendiente {
-        background: var(--warning-light);
-        color: var(--warning);
-    }
-
-    &.en_transito {
-        background: #dbeafe;
-        color: #1d4ed8;
-    }
-
-    &.entregado {
-        background: var(--success-light);
-        color: var(--success);
-    }
-
-    &.cancelado {
-        background: var(--danger-light);
-        color: var(--danger);
-    }
+    background: var(--primary-light);
+    color: var(--primary);
 }
 
-.badge-descuento {
-    background: var(--success-light);
-    color: var(--success);
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-// ===========================
-// Mensajes
-// ===========================
 .sin-datos {
     text-align: center;
     color: var(--text-muted);
     padding: 3rem 2rem;
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    border: 1px dashed var(--border);
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px dashed #c7d2fe;
     font-size: 0.9rem;
 }
 
@@ -391,16 +310,13 @@ table {
     text-align: center;
     color: var(--text-muted);
     padding: 3rem;
-    font-size: 0.9rem;
 }
 
 .error {
     color: var(--danger);
     font-size: 0.78rem;
     margin-top: 0.3rem;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+    display: block;
 }
 
 .descuento {
@@ -414,7 +330,7 @@ table {
     background: var(--danger-light);
     color: var(--danger);
     padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
+    border-radius: 8px;
     margin-bottom: 1rem;
     font-size: 0.875rem;
     border-left: 3px solid var(--danger);
