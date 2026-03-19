@@ -20,7 +20,7 @@ Sistema de gestión logística terrestre y marítima desarrollado con Spring Boo
 
 ### Con Docker (recomendado)
 ```bash
-git clone https://github.com/TU_USUARIO/logistics-management-system.git
+git clone https://github.com/DaniluxGz/logistics-management-system.git
 cd logistics-management-system
 docker compose up --build
 ```
