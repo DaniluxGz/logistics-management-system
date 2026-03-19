@@ -29,7 +29,7 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @NotBlank(message = "El nombre es obligatorio")
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String nombre;
 
     @Email(message = "El email debe ser válido")
@@ -42,7 +42,7 @@ public class Usuario implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     @Builder.Default
     private RolUsuario rol = RolUsuario.USER;
 

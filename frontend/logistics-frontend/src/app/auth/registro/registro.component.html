@@ -1,0 +1,44 @@
+<div class="login-container">
+    <div class="login-card">
+        <h2>Crear Cuenta</h2>
+        <p class="subtitulo">Sistema de Gestión Logística</p>
+
+        <form [formGroup]="formulario" (ngSubmit)="registrar()">
+            <div class="campo">
+                <label>Nombre</label>
+                <input formControlName="nombre" placeholder="Nombre completo" />
+                <span class="error-campo"
+                    *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+                    El nombre es obligatorio
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Correo electrónico</label>
+                <input type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+                <span class="error-campo" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.invalid">
+                    Ingrese un correo válido
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Contraseña</label>
+                <input type="password" formControlName="password" placeholder="••••••" />
+                <span class="error-campo"
+                    *ngIf="formulario.get('password')?.touched && formulario.get('password')?.invalid">
+                    Mínimo 6 caracteres
+                </span>
+            </div>
+
+            <div class="error-general" *ngIf="error">{{ error }}</div>
+
+            <button type="submit" [disabled]="formulario.invalid || cargando">
+                {{ cargando ? 'Registrando...' : 'Crear Cuenta' }}
+            </button>
+
+            <p class="registro-link">
+                ¿Ya tienes cuenta? <a routerLink="/auth/login">Inicia sesión</a>
+            </p>
+        </form>
+    </div>
+</div>

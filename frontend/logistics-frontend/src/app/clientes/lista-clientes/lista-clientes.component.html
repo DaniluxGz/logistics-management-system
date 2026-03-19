@@ -1,0 +1,45 @@
+<div class="contenedor">
+    <header class="encabezado">
+        <div>
+            <h1>Gestión de Clientes</h1>
+        </div>
+        <div class="acciones-header">
+            <a routerLink="/envios" class="btn-secundario">Envíos</a>
+            <button class="btn-primario" (click)="mostrarFormulario = !mostrarFormulario">
+                + Nuevo Cliente
+            </button>
+        </div>
+    </header>
+
+    <app-formulario-cliente *ngIf="mostrarFormulario" (clienteCreado)="onClienteCreado()">
+    </app-formulario-cliente>
+
+    <div *ngIf="cargando" class="cargando">Cargando...</div>
+
+    <table *ngIf="!cargando && clientes.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes">
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.name }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.phone }}</td>
+                <td>
+                    <button class="btn-eliminar" (click)="eliminar(cliente.id!)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="!cargando && clientes.length === 0" class="sin-datos">
+        No hay clientes registrados.
+    </p>
+</div>

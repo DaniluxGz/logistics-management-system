@@ -1,0 +1,48 @@
+<div class="contenedor">
+    <header class="encabezado">
+        <h1>Bodegas</h1>
+        <button class="btn-primario" (click)="mostrarFormulario = !mostrarFormulario">
+            + Nueva Bodega
+        </button>
+    </header>
+
+    <div class="formulario-card" *ngIf="mostrarFormulario">
+        <h3>Nueva Bodega</h3>
+        <form [formGroup]="formulario" (ngSubmit)="crear()">
+            <div class="fila">
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input formControlName="nombre" placeholder="Nombre de la bodega" />
+                </div>
+                <div class="campo">
+                    <label>Ubicación</label>
+                    <input formControlName="ubicacion" placeholder="Ciudad, País" />
+                </div>
+            </div>
+            <div class="botones">
+                <button type="submit" class="btn-primario" [disabled]="formulario.invalid">
+                    Crear Bodega
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <table *ngIf="bodegas.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bodega of bodegas">
+                <td>{{ bodega.id }}</td>
+                <td>{{ bodega.nombre }}</td>
+                <td>{{ bodega.ubicacion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="bodegas.length === 0" class="sin-datos">No hay bodegas registradas.</p>
+</div>

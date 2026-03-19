@@ -1,0 +1,91 @@
+.formulario-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    h3 {
+        margin: 0 0 1.25rem;
+        color: #1a1a2e;
+    }
+}
+
+.fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 0.4rem;
+    }
+
+    input,
+    select {
+        padding: 0.6rem 0.9rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 0.95rem;
+
+        &:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+    }
+}
+
+.error {
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.descuento {
+    color: #16a34a;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.error-general {
+    background: #fff5f5;
+    color: #dc2626;
+    padding: 0.7rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.botones {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primario {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover:not(:disabled) {
+        background: #4338ca;
+    }
+
+    &:disabled {
+        background: #a5b4fc;
+        cursor: not-allowed;
+    }
+}

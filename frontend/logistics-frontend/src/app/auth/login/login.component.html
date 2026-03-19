@@ -1,0 +1,42 @@
+<div class="login-container">
+    <div class="login-card">
+        <h2>Iniciar Sesión</h2>
+        <p class="subtitulo">Sistema de Gestión Logística</p>
+
+        <form [formGroup]="formulario" (ngSubmit)="iniciarSesion()">
+
+            <div class="campo">
+                <label>Correo electrónico</label>
+                <input type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+                <span class="error-campo"
+                    *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['required']">
+                    El correo es obligatorio
+                </span>
+                <span class="error-campo"
+                    *ngIf="formulario.get('email')?.touched && formulario.get('email')?.errors?.['email']">
+                    Ingrese un correo válido
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Contraseña</label>
+                <input type="password" formControlName="password" placeholder="••••••" />
+                <span class="error-campo"
+                    *ngIf="formulario.get('password')?.touched && formulario.get('password')?.errors?.['required']">
+                    La contraseña es obligatoria
+                </span>
+            </div>
+
+            <div class="error-general" *ngIf="error">{{ error }}</div>
+
+            <button type="submit" [disabled]="formulario.invalid || cargando">
+                {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+            </button>
+
+            <p class="registro-link">
+                ¿No tienes cuenta? <a routerLink="/auth/registro">Regístrate</a>
+            </p>
+
+        </form>
+    </div>
+</div>

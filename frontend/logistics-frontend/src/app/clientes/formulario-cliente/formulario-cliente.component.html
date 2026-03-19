@@ -1,0 +1,36 @@
+<div class="formulario-card">
+    <h3>Nuevo Cliente</h3>
+
+    <form [formGroup]="formulario" (ngSubmit)="crear()">
+        <div class="fila">
+            <div class="campo">
+                <label>Nombre</label>
+                <input formControlName="name" placeholder="Nombre completo" />
+                <span class="error" *ngIf="formulario.get('name')?.touched && formulario.get('name')?.invalid">
+                    El nombre es obligatorio
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Email</label>
+                <input type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+                <span class="error" *ngIf="formulario.get('email')?.touched && formulario.get('email')?.invalid">
+                    Ingrese un email válido
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Teléfono</label>
+            <input formControlName="phone" placeholder="3001234567" />
+        </div>
+
+        <div class="error-general" *ngIf="error">{{ error }}</div>
+
+        <div class="botones">
+            <button type="submit" class="btn-primario" [disabled]="formulario.invalid || cargando">
+                {{ cargando ? 'Creando...' : 'Crear Cliente' }}
+            </button>
+        </div>
+    </form>
+</div>

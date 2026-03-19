@@ -1,0 +1,48 @@
+<div class="contenedor">
+    <header class="encabezado">
+        <h1>Puertos</h1>
+        <button class="btn-primario" (click)="mostrarFormulario = !mostrarFormulario">
+            + Nuevo Puerto
+        </button>
+    </header>
+
+    <div class="formulario-card" *ngIf="mostrarFormulario">
+        <h3>Nuevo Puerto</h3>
+        <form [formGroup]="formulario" (ngSubmit)="crear()">
+            <div class="fila">
+                <div class="campo">
+                    <label>Nombre</label>
+                    <input formControlName="nombre" placeholder="Nombre del puerto" />
+                </div>
+                <div class="campo">
+                    <label>Ubicación</label>
+                    <input formControlName="ubicacion" placeholder="Ciudad, País" />
+                </div>
+            </div>
+            <div class="botones">
+                <button type="submit" class="btn-primario" [disabled]="formulario.invalid">
+                    Crear Puerto
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <table *ngIf="puertos.length > 0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let puerto of puertos">
+                <td>{{ puerto.id }}</td>
+                <td>{{ puerto.nombre }}</td>
+                <td>{{ puerto.ubicacion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="puertos.length === 0" class="sin-datos">No hay puertos registrados.</p>
+</div>

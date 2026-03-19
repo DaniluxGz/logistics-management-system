@@ -1,0 +1,82 @@
+<div class="formulario-card">
+    <h3>Nuevo Envío Marítimo</h3>
+
+    <form [formGroup]="formulario" (ngSubmit)="crear()">
+        <div class="fila">
+            <div class="campo">
+                <label>Número de Guía</label>
+                <input formControlName="numeroGuia" placeholder="MAR-001" />
+                <span class="error"
+                    *ngIf="formulario.get('numeroGuia')?.touched && formulario.get('numeroGuia')?.invalid">
+                    Formato inválido (solo mayúsculas, números y guiones)
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Tipo de Producto</label>
+                <select formControlName="tipoProducto">
+                    <option value="">Seleccione...</option>
+                    <option *ngFor="let tipo of tiposProducto" [value]="tipo">{{ tipo }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Cantidad</label>
+                <input type="number" formControlName="cantidad" placeholder="0" />
+                <span class="descuento" *ngIf="formulario.get('cantidad')?.value > 10">
+                    ✓ Aplica descuento del 3%
+                </span>
+            </div>
+
+            <div class="campo">
+                <label>Precio Original</label>
+                <input type="number" formControlName="precioOriginal" placeholder="0" />
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Fecha de Registro</label>
+                <input type="date" formControlName="fechaRegistro" />
+            </div>
+
+            <div class="campo">
+                <label>Fecha de Entrega</label>
+                <input type="date" formControlName="fechaEntrega" />
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="campo">
+                <label>Cliente</label>
+                <select formControlName="clienteId">
+                    <option value="">Seleccione...</option>
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.name }}</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>Número de Flota</label>
+                <input formControlName="numeroFlota" placeholder="FLT-001" />
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Puerto</label>
+            <select formControlName="puertoId">
+                <option value="">Seleccione...</option>
+                <option *ngFor="let puerto of puertos" [value]="puerto.id">{{ puerto.nombre }}</option>
+            </select>
+        </div>
+
+        <div class="error-general" *ngIf="error">{{ error }}</div>
+
+        <div class="botones">
+            <button type="submit" class="btn-primario" [disabled]="formulario.invalid || cargando">
+                {{ cargando ? 'Creando...' : 'Crear Envío' }}
+            </button>
+        </div>
+    </form>
+</div>

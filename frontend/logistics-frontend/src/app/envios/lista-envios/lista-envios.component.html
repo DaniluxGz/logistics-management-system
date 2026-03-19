@@ -1,0 +1,124 @@
+<div class="contenedor">
+    <header class="encabezado">
+        <div>
+            <h1>Gestión de Envíos</h1>
+            <p>Sistema de Logística Sinergia</p>
+        </div>
+        <div class="acciones-header">
+            <a routerLink="/clientes" class="btn-secundario">Clientes</a>
+            <button (click)="cerrarSesion()" class="btn-cerrar">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button [class.activo]="vistaActiva === 'terrestres'" (click)="vistaActiva = 'terrestres'">
+            Envíos Terrestres
+        </button>
+        <button [class.activo]="vistaActiva === 'maritimos'" (click)="vistaActiva = 'maritimos'">
+            Envíos Marítimos
+        </button>
+    </div>
+
+    <!-- Envios Terrestres -->
+    <div *ngIf="vistaActiva === 'terrestres'">
+        <div class="barra-acciones">
+            <h2>Envíos Terrestres</h2>
+            <button class="btn-primario" (click)="mostrarFormularioTerrestre = !mostrarFormularioTerrestre">
+                + Nuevo Envío Terrestre
+            </button>
+        </div>
+
+        <app-formulario-envio-terrestre *ngIf="mostrarFormularioTerrestre" (envioCreado)="onEnvioCreado()">
+        </app-formulario-envio-terrestre>
+
+        <div *ngIf="cargando" class="cargando">Cargando...</div>
+
+        <table *ngIf="!cargando && enviosTerrestres.length > 0">
+            <thead>
+                <tr>
+                    <th>Guía</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Cliente</th>
+                    <th>Placa</th>
+                    <th>Bodega</th>
+                    <th>Precio Original</th>
+                    <th>Precio Final</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let envio of enviosTerrestres">
+                    <td>{{ envio.numeroGuia }}</td>
+                    <td>{{ envio.tipoProducto }}</td>
+                    <td>{{ envio.cantidad }}</td>
+                    <td>{{ envio.clienteNombre }}</td>
+                    <td>{{ envio.placaVehiculo }}</td>
+                    <td>{{ envio.bodegaNombre }}</td>
+                    <td>$ {{ envio.precioOriginal | number }}</td>
+                    <td>$ {{ envio.precioFinal | number }}</td>
+                    <td><span class="estado">{{ envio.estado }}</span></td>
+                    <td>
+                        <button class="btn-eliminar" (click)="eliminarTerrestre(envio.id!)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p *ngIf="!cargando && enviosTerrestres.length === 0" class="sin-datos">
+            No hay envíos terrestres registrados.
+        </p>
+    </div>
+
+    <!-- Envios Maritimos -->
+    <div *ngIf="vistaActiva === 'maritimos'">
+        <div class="barra-acciones">
+            <h2>Envíos Marítimos</h2>
+            <button class="btn-primario" (click)="mostrarFormularioMaritimo = !mostrarFormularioMaritimo">
+                + Nuevo Envío Marítimo
+            </button>
+        </div>
+
+        <app-formulario-envio-maritimo *ngIf="mostrarFormularioMaritimo" (envioCreado)="onEnvioCreado()">
+        </app-formulario-envio-maritimo>
+
+        <table *ngIf="enviosMaritimos.length > 0">
+            <thead>
+                <tr>
+                    <th>Guía</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Cliente</th>
+                    <th>Flota</th>
+                    <th>Puerto</th>
+                    <th>Precio Original</th>
+                    <th>Precio Final</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let envio of enviosMaritimos">
+                    <td>{{ envio.numeroGuia }}</td>
+                    <td>{{ envio.tipoProducto }}</td>
+                    <td>{{ envio.cantidad }}</td>
+                    <td>{{ envio.clienteNombre }}</td>
+                    <td>{{ envio.numeroFlota }}</td>
+                    <td>{{ envio.puertoNombre }}</td>
+                    <td>$ {{ envio.precioOriginal | number }}</td>
+                    <td>$ {{ envio.precioFinal | number }}</td>
+                    <td><span class="estado">{{ envio.estado }}</span></td>
+                    <td>
+                        <button class="btn-eliminar" (click)="eliminarMaritimo(envio.id!)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p *ngIf="enviosMaritimos.length === 0" class="sin-datos">
+            No hay envíos marítimos registrados.
+        </p>
+    </div>
+</div>
