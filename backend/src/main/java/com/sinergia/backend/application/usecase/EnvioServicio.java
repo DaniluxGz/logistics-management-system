@@ -1,10 +1,7 @@
 package com.sinergia.backend.application.usecase;
 
-import com.sinergia.backend.domain.model.entity.EnvioMaritimo;
-import com.sinergia.backend.domain.model.entity.EnvioTerrestre;
-import com.sinergia.backend.domain.repository.ClienteRepositorio;
-import com.sinergia.backend.domain.repository.EnvioMaritimoRepositorio;
-import com.sinergia.backend.domain.repository.EnvioTerrestreRepositorio;
+import com.sinergia.backend.domain.model.entity.*;
+import com.sinergia.backend.domain.repository.*;
 import com.sinergia.backend.domain.service.DescuentoServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +16,8 @@ public class EnvioServicio {
     private final EnvioTerrestreRepositorio envioTerrestreRepositorio;
     private final EnvioMaritimoRepositorio envioMaritimoRepositorio;
     private final ClienteRepositorio clienteRepositorio;
+    private final BodegaRepositorio bodegaRepositorio;
+    private final PuertoRepositorio puertoRepositorio;
     private final DescuentoServicio descuentoServicio;
 
     // Obtener todos los envíos terrestres
@@ -51,7 +50,15 @@ public class EnvioServicio {
     @Transactional
     public EnvioTerrestre crearEnvioTerrestre(EnvioTerrestre envio) {
         validarNumeroGuia(envio.getNumeroGuia());
-        validarCliente(envio.getCliente().getId());
+
+        // Cargar entidades completas desde la base de datos
+        Cliente cliente = clienteRepositorio.findById(envio.getCliente().getId())
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        envio.setCliente(cliente);
+
+        Bodega bodega = bodegaRepositorio.findById(envio.getBodega().getId())
+                .orElseThrow(() -> new RuntimeException("Bodega no encontrada"));
+        envio.setBodega(bodega);
 
         // Calcular precio final con posible descuento del 5%
         envio.setPrecioFinal(
@@ -65,7 +72,15 @@ public class EnvioServicio {
     @Transactional
     public EnvioMaritimo crearEnvioMaritimo(EnvioMaritimo envio) {
         validarNumeroGuia(envio.getNumeroGuia());
-        validarCliente(envio.getCliente().getId());
+
+        // Cargar entidades completas desde la base de datos
+        Cliente cliente = clienteRepositorio.findById(envio.getCliente().getId())
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+        envio.setCliente(cliente);
+
+        Puerto puerto = puertoRepositorio.findById(envio.getPuerto().getId())
+                .orElseThrow(() -> new RuntimeException("Puerto no encontrado"));
+        envio.setPuerto(puerto);
 
         // Calcular precio final con posible descuento del 3%
         envio.setPrecioFinal(
@@ -94,13 +109,6 @@ public class EnvioServicio {
         if (envioTerrestreRepositorio.existsByNumeroGuia(numeroGuia) ||
                 envioMaritimoRepositorio.existsByNumeroGuia(numeroGuia)) {
             throw new RuntimeException("Ya existe un envío con el número de guía: " + numeroGuia);
-        }
-    }
-
-    // Validar que el cliente exista
-    private void validarCliente(Long clienteId) {
-        if (!clienteRepositorio.existsById(clienteId)) {
-            throw new RuntimeException("Cliente no encontrado con ID: " + clienteId);
         }
     }
 }
